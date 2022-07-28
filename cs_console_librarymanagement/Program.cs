@@ -439,7 +439,7 @@ namespace cs_console_librarymanagement
             }
             else
             {
-                Console.WriteLine("====== Invalid Book id ======");
+                Console.WriteLine("====== Invalid Book id ======\n");
             }
 
             bookList.Add(book);
