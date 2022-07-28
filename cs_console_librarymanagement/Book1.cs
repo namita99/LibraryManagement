@@ -6,7 +6,7 @@ namespace cs_console_librarymanagement
 {
     public class Book1 : LibraryItem
     {
-        public Boolean IsBorrowed { get; set; }
+       
         public int BookId { get; set; }
 
         public string BookName { get; private set; }

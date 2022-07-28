@@ -9,12 +9,11 @@ namespace cs_console_librarymanagement
         public int bookID;
         public string bookName;
         public string bookAuthor;
-        public Boolean IsBorrowed;
         public int bookPrice;
         public int bookCount;
         public int x;
     }
-    //Defining a class for newspaper
+    //Defining a class newspaper
     class Newspaper
     {
         public int paperID;
@@ -36,6 +35,8 @@ namespace cs_console_librarymanagement
 
     class Program
     {
+        // Create list for book, newspaper, borrow
+
         static List<Book> bookList = new List<Book>();
         static List<BorrowDetails> borrowList = new List<BorrowDetails>();
         static Book book = new Book();
@@ -83,7 +84,7 @@ namespace cs_console_librarymanagement
                                 SearchBook();
                                 break;
                             case 4:
-                                DisplayBooks();
+                                DisplayBook();
                                 break;
 
                             case 5:
@@ -144,7 +145,7 @@ namespace cs_console_librarymanagement
                                 BorrowBook();
                                 break;
                             case 2:
-                                ReturnBook();
+                                RetBook();
                                 break;
                             case 3:
                                 DisplayBooks();
@@ -254,10 +255,13 @@ namespace cs_console_librarymanagement
                         //BorrowNewspaper();
                         break;
                     case 2:
+
                         ReturnNewspaper();
+                        //RetNewspaper();
                         break;
                     case 3:
                         DisplayNewspaper();
+                        //DisplayNewspapers();
                         break;
 
                     case 4:
@@ -308,6 +312,43 @@ namespace cs_console_librarymanagement
             Console.WriteLine();
 
         }
+        private static void RetBook()
+        {
+            Book1 bk1 = new Book1(
+               1, "Nature", "Mr. Aggarwal", 50, 1000, 30);
+
+
+            Borrowable item1 = new Borrowable(bk1);
+            Console.WriteLine(item1);
+            Console.WriteLine();
+
+            item1.ReturnItem("user1");
+            item1.ReturnItem("user2");
+
+
+            Console.WriteLine(item1);
+            Console.WriteLine();
+
+        }
+
+        private static void RetNewspaper()
+        {
+            Newspaper1 np1 = new Newspaper1(
+               1, "Lokmat", 10, 5, 100);
+
+
+            Borrowable item1 = new Borrowable(np1);
+            Console.WriteLine(item1);
+            Console.WriteLine();
+
+            item1.ReturnItem("user1");
+            item1.ReturnItem("user2");
+
+
+            Console.WriteLine(item1);
+            Console.WriteLine();
+
+        }
         private static void DisplayBooks()
         {
             Book1 bk1 = new Book1(
@@ -326,7 +367,7 @@ namespace cs_console_librarymanagement
             Console.WriteLine();
         }
 
-        private static void DisplayNewspaper()
+        private static void DisplayNewspapers()
         {
             Newspaper1 np1 = new Newspaper1(
                1, "Lokmat", 10, 5, 100);
@@ -334,18 +375,18 @@ namespace cs_console_librarymanagement
             Console.WriteLine();
 
             Newspaper1 np2 = new Newspaper1(
-                  1, "Prabhat", 15, 10, 150);
+                  2, "Prabhat", 15, 10, 150);
             Console.WriteLine(np2);
             Console.WriteLine();
 
             Newspaper1 np3 = new Newspaper1(
-                 1, "Sakhal", 8, 15, 200);
+                 3, "Sakhal", 8, 15, 200);
             Console.WriteLine(np3);
             Console.WriteLine();
         }
+      
+
         //To add book details to the Library database
-
-
         static void AddBook()
         {
             Book book = new Book();
@@ -359,6 +400,7 @@ namespace cs_console_librarymanagement
             Console.Write("Number of Books:");
             book.x = book.bookCount = int.Parse(Console.ReadLine());
             bookList.Add(book);
+            Console.WriteLine("Books added Successfully.");
         }
 
         //To delete book details from the Library database 
@@ -407,6 +449,26 @@ namespace cs_console_librarymanagement
                 Console.WriteLine("Book id {0} not found", find);
             }
         }
+
+        //To display book details to the Library database
+        public static void DisplayBook()
+        {
+            foreach (Book searchId in bookList)
+            {
+
+
+                
+                Console.WriteLine("Book id :{0}\n" +
+                "Book Name :{1}\n" +
+                "Book Author Name:{2}\n"+
+                "Book price :{3}\n" +
+                "Book Count :{4}", searchId.bookID, searchId.bookName,searchId.bookAuthor, searchId.bookPrice, searchId.bookCount);
+                Console.WriteLine();
+
+            }
+        }
+
+
 
         //To borrow book details from the Library
         static void Borrow()
@@ -491,7 +553,7 @@ namespace cs_console_librarymanagement
             }
         }
 
-        //Adding a newspaper to library
+        //To add newspaper to the library database
         static void AddNewspaper()
         {
             Newspaper paper = new Newspaper();
@@ -510,7 +572,7 @@ namespace cs_console_librarymanagement
             }
         }
 
-        //Deleting paper from the library
+        //To delete newspaper from the library
 
         static void RemoveNewspaper()
         {
@@ -559,6 +621,23 @@ namespace cs_console_librarymanagement
             }
         }
 
+        //To display newspaper details to the library 
+        public static void DisplayNewspaper()
+        {
+            foreach (Newspaper searchId in paperList)
+            {
+
+
+               
+                Console.WriteLine("Newspaper id :{0}\n" +
+                "Newspaper name :{1}\n" +
+                "Newspaper price :{2}\n" +
+                "Newspaper Count :{3}", searchId.paperID, searchId.paperName, searchId.paperPrice, searchId.paperCount);
+                Console.WriteLine();
+
+            }
+        }
+        //To borrowed newspaper to the library 
         static void Borrow1()
         {
             Newspaper paper = new Newspaper();
@@ -602,7 +681,7 @@ namespace cs_console_librarymanagement
             }
             borrowList.Add(borrow);
         }
-        //To return borrowed book to the library 
+        //To return borrowed newspaper to the library 
         static void ReturnNewspaper()
         {
             Newspaper paper = new Newspaper();
